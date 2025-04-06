@@ -6,7 +6,7 @@ const fetch = require('node-fetch'); // Certifique-se de ter node-fetch instalad
 
 const { Telegraf, Markup } = require('telegraf');
 const axios = require('axios');
-const bot = new Telegraf('7853185177:AAFcV7e8auo_QxMPHaE9_CYJ0O3LgbOm50E');
+const bot = new Telegraf('7698609915:AAEkiUAnLMk5Y_gysga3VkzOsHWX67EFcuQ');
 
 // Endpoint para a raiz
 app.get('/', (req, res) => {
@@ -25,7 +25,7 @@ server.headersTimeout = 120000; // 120 segundos
 // Teste de conexão com o Telegram
 async function testeTelegramAPI() {
     try {
-        const response = await fetch(`https://api.telegram.org/bot7853185177:AAFcV7e8auo_QxMPHaE9_CYJ0O3LgbOm50E/getMe`, { timeout: 30000 });
+        const response = await fetch(`https://api.telegram.org/bot7698609915:AAEkiUAnLMk5Y_gysga3VkzOsHWX67EFcuQ/getMe`, { timeout: 30000 });
         const data = await response.json();
         console.log("Conexão bem-sucedida com a API do Telegram:", data);
     } catch (err) {
