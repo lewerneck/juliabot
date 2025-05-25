@@ -99,7 +99,6 @@ async function obterNomeBot() {
 
 
 
-
 // Iniciar o bot e chamar a função de boas-vindas
 bot.start(async (ctx) => {
 	
@@ -598,59 +597,70 @@ async function iniciarFluxoDeConteudo(ctx) {
     const primeiroNome = ctx.from.first_name;
 
     // Enviando mensagem inicial
-    const mensagemInicialMessage = await ctx.reply(`Oiie ${primeiroNome} ❤️ Você finalmente encontrou meu chat secreto 😈`);
+    const mensagemInicialMessage = await ctx.reply(`Oiie ${primeiroNome} ❤️ \n ` +
+    `Você finalmente encontrou meu chat secreto gatinnhooo 😈`);
 	mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`] = mensagemInicialMessage.message_id;
-    // MENSAGEM 1 - PACOTE CEREJA
-    const videoUrlCereja = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d1/download.mp4';
-    const captionCereja = `Nesse dia eu tava com muita vontade de transar, uma vontade de ficar de quatro pra qualquer homem que me olhasse\\.\\.\\. Então fui pedir açúcar pro meu vizinho e ele me deu pau \n\n` +
-                          `***Pacote Cereja 🍒*** \n` +
-						  `25 Vídeos e 20 Fotos \n\n` +
-						  `São vários vídeos chupando, gozando de quatro, sozinha, com clientes\\.\\.\\. \n` +
-                          `Quer ver me ver de todos os jeitinho e me macetando gostoso\\? Hahaha`;
+    // MENSAGEM 1 - PACOTE MASTER
+ //   const videoUrlMaster = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f88086df3c0da15868de58/download.mp4';
+   // const captionMaster = `Você finalmente encontrou meu chat secreto xuxuzinhooo 😈`;
 
-    const inlineKeyboardCereja = Markup.inlineKeyboard([
-        [Markup.button.callback('Comprar por R$ 57', 'Cereja')]
-    ]);
+   // const inlineKeyboardMaster = Markup.inlineKeyboard([
+  //      [Markup.button.callback('Comprar por R$ 57', 'Master')]
+   // ]);
  
     // Delay de 5 segundos antes de enviar MENSAGEM 1
-	setTimeout(async () => {
-    const cerejaMessage = await ctx.replyWithVideo(videoUrlCereja, { caption: captionCereja, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardCereja.reply_markup });
-    cerejaMessageIds[`${ctx.chat.id}-cereja`] = cerejaMessage.message_id; // Mover esta linha para dentro da função assíncrona
-	}, 5000); // 5 segundos
+//	setTimeout(async () => {
+  //  const masterMessage = await ctx.replyWithVideo(videoUrlMaster, { caption: captionMaster, parse_mode: 'MarkdownV2' });
+    // masterMessageIds[`${ctx.chat.id}-master`] = masterMessage.message_id; // Mover esta linha para dentro da função assíncrona
+//	}, 5000); // 5 segundos
 
-    // MENSAGEM 2 - PACOTE PÊSSEGO
-    const videoUrlPessego = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33062fc4203b2e25318/download.mp4';
-    const captionPessego = `***Pacote Pêssego 🍑*** \n`+
-						   `20 Vídeos e 15 Fotos \n\n` +
-						   `Nesse pack estão os videozinhos chupando meu tio e brincando com a minha bucetinha até ela ficar toda melada do meu gozo, além dos vídeos socando bem forte no meu cuzinho \n\n` +
-                           `Quer me ver toda molhadinha\\? 🙈`;
+    // MENSAGEM 2 - PACOTE PICANTE
+    const videoUrlPicante = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/6832bd827195d7bad3292169/download.mp4';
+    const captionPicante = `Tô esperando por você 💖
+Esses são os meus pacotes  🔞👇🏻`;
 
-    const inlineKeyboardPessego = Markup.inlineKeyboard([
-        [Markup.button.callback('Comprar por R$ 37', 'Pessego')]
+    const inlineKeyboardMaster = Markup.inlineKeyboard([
+       [Markup.button.callback('Pack Master R$ 73', 'Master')]   ]);
+  
+    const inlineKeyboardPicante = Markup.inlineKeyboard([
+        [Markup.button.callback('Pack Picante por R$ 55', 'Picante')]   ]);
+
+       const inlineKeyboardCereja = Markup.inlineKeyboard([
+        [Markup.button.callback('Pack Cereja por R$ 27', 'Cereja')]
     ]);
 
     // Delay de 10 segundos antes de enviar MENSAGEM 2 (total de 15 segundos após a primeira)
     setTimeout(async () => {
-        const pessegoMessage = await ctx.replyWithVideo(videoUrlPessego, { caption: captionPessego, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardPessego.reply_markup });
-    pessegoMessageIds[`${ctx.chat.id}-pessego`] = pessegoMessage.message_id;
+        const picanteMessage = await ctx.replyWithVideo(videoUrlPicante, {
+  caption: captionPicante,
+  parse_mode: 'MarkdownV2',
+  reply_markup: {
+    inline_keyboard: [
+      ...inlineKeyboardMaster.reply_markup.inline_keyboard,
+      ...inlineKeyboardPicante.reply_markup.inline_keyboard,
+      ...inlineKeyboardCereja.reply_markup.inline_keyboard,
+    ]
+  }
+});
+    picanteMessageIds[`${ctx.chat.id}-picante`] = picanteMessage.message_id;
 	}, 7000); // 15 segundos (5s + 10s)
 		
-    // MENSAGEM 3 - PACOTE MORANGO
-    const videoUrlMorango = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
-    const captionMorango = `***Pacote Morango 🍓*** \n` + 
-						   `13 Vídeos e 10 Fotos \n\n` +
-						   `Nesse pack você vai encontrar meus melhores videozinhos gozando muito e gemendo gostoso \n\n` +
-                           `Tem vídeo meladinha, me masturbando, com plugzinho no meu cu, e dos melhores jeitos pra você\\!`;
+    // MENSAGEM 3 - PACOTE CEREJA
+ //   const videoUrlCereja = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
+//    const captionCereja = `***Pacote Cereja 🍒*** \n` + 
+	//					   `13 Vídeos e 10 Fotos \n\n` +
+	//					   `Nesse pack você vai encontrar meus melhores videozinhos gozando muito e gemendo gostoso \n\n` +
+ //                          `Tem vídeo meladinha, me masturbando, com plugzinho no meu cu, e dos melhores jeitos pra você\\!`;
 
-    const inlineKeyboardMorango = Markup.inlineKeyboard([
-        [Markup.button.callback('Comprar por R$ 19,90', 'Morango')]
-    ]);
+  //  const inlineKeyboardCereja = Markup.inlineKeyboard([
+   //     [Markup.button.callback('Comprar por R$ 19,90', 'Cereja')]
+   // ]);
 
     // Delay de 15 segundos antes de enviar MENSAGEM 3 (total de 30 segundos após a primeira)
-    setTimeout(async () => {
-        const morangoMessage = await ctx.replyWithVideo(videoUrlMorango, { caption: captionMorango, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardMorango.reply_markup });
-    morangoMessageIds[`${ctx.chat.id}-morango`] = morangoMessage.message_id;
-	}, 9000); // 30 segundos (5s + 10s + 15s)
+   // setTimeout(async () => {
+ //       const cerejaMessage = await ctx.replyWithVideo(videoUrlCereja, { caption: captionCereja, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardCereja.reply_markup });
+  //  cerejaMessageIds[`${ctx.chat.id}-cereja`] = cerejaMessage.message_id;
+//	}, 9000); // 30 segundos (5s + 10s + 15s)
 	
 	
  // Mensagem final "To te esperando..." após MENSAGEM 3
@@ -663,7 +673,7 @@ async function iniciarFluxoDeConteudo(ctx) {
 }
 
 // Comando para escolher forma de pagamento AQUI TA OK **************************************************
-bot.action(/^(Cereja|Pessego|Morango)$/, async (ctx) => {
+bot.action(/^(Master|Picante|Cereja)$/, async (ctx) => {
 	// Chama diretamente a função limparMensagens
 	await limparMensagens(ctx, '2');
    
@@ -685,7 +695,7 @@ bot.action(/^(Cereja|Pessego|Morango)$/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via Cartão de Crédito
-bot.action(/(Cereja|Pessego|Morango)-cartao/, async (ctx) => {
+bot.action(/(Master|Picante|Cereja)-cartao/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
      // Envia a mensagem "Gerando Pagamento..." e armazena o ID da mensagem
     const generatingMessage = await ctx.reply(
@@ -701,13 +711,13 @@ bot.action(/(Cereja|Pessego|Morango)-cartao/, async (ctx) => {
 
     let checkoutLink = '';
     switch (pacoteEscolhido) {
-        case 'Cereja':
+        case 'Master':
             checkoutLink = 'https://pay.cakto.com.br/4VrpxFw';
             break;
-        case 'Pessego':
+        case 'Picante':
             checkoutLink = 'https://pay.cakto.com.br/6j8hePu';
             break;
-        case 'Morango':
+        case 'Cereja':
             checkoutLink = 'https://pay.cakto.com.br/5BxgnJ8';
             break;
     }
@@ -725,7 +735,7 @@ bot.action(/(Cereja|Pessego|Morango)-cartao/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via PIX
-bot.action(/(Cereja|Pessego|Morango)-pix/, async (ctx) => {
+bot.action(/(Master|Picante|Cereja)-pix/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
     const valor = precosPacotes[pacoteEscolhido];
     await gerarPagamento(ctx, valor, pacoteEscolhido);
@@ -1112,9 +1122,9 @@ bot.action(/gerarPagamentoComDesconto:(.+)-(\d+)/, async (ctx) => {
 // Função para obter a descrição do pacote com base na chave
 function obterDescricaoPacote(pacote) {
     const descricoes = {
-        Morango: 'MORANGO',
-        Pessego: 'PÊSSEGO',
-        Cereja: 'CEREJA'
+        Cereja: 'CEREJA',
+        Picante: 'PICANTE',
+        Master: 'MASTER'
     };
     return descricoes[pacote] || 'Pacote Desconhecido';
 }
@@ -1129,23 +1139,23 @@ function obterPacotePorValor(valorPago) {
 
     // Verificando qual pacote corresponde ao valor pago
     if (
-        (valorEmCentavos >= precosPacotes.Morango - margem && valorEmCentavos <= precosPacotes.Morango + margem) ||
-        (valorEmCentavos >= (precosPacotes.Morango / 2) - margem && valorEmCentavos <= (precosPacotes.Morango / 2) + margem) ||
-        (valorEmCentavos >= Math.round(precosPacotes.Morango * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Morango * 0.7) + margem) // Desconto de 30%
-    ) {
-        return { nome: 'Pacote MORANGO 🍓', link: 'https://lewerneck.github.io/a9fk-morango' };
-    } else if (
-        (valorEmCentavos >= precosPacotes.Pessego - margem && valorEmCentavos <= precosPacotes.Pessego + margem) ||
-        (valorEmCentavos >= (precosPacotes.Pessego / 2) - margem && valorEmCentavos <= (precosPacotes.Pessego / 2) + margem) ||
-        (valorEmCentavos >= Math.round(precosPacotes.Pessego * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Pessego * 0.7) + margem) // Desconto de 30%
-    ) {
-        return { nome: 'Pacote PÊSSEGO 🍑', link: 'https://lewerneck.github.io/b7lq-pessego' };
-    } else if (
         (valorEmCentavos >= precosPacotes.Cereja - margem && valorEmCentavos <= precosPacotes.Cereja + margem) ||
         (valorEmCentavos >= (precosPacotes.Cereja / 2) - margem && valorEmCentavos <= (precosPacotes.Cereja / 2) + margem) ||
         (valorEmCentavos >= Math.round(precosPacotes.Cereja * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Cereja * 0.7) + margem) // Desconto de 30%
     ) {
-        return { nome: 'Pacote CEREJA 🍒', link: 'https://lewerneck.github.io/x5pz-cereja' };
+        return { nome: 'Pacote CEREJA 🍒', link: 'https://biahoover.github.io/xr26-cereja/' };
+    } else if (
+        (valorEmCentavos >= precosPacotes.Picante - margem && valorEmCentavos <= precosPacotes.Picante + margem) ||
+        (valorEmCentavos >= (precosPacotes.Picante / 2) - margem && valorEmCentavos <= (precosPacotes.Picante / 2) + margem) ||
+        (valorEmCentavos >= Math.round(precosPacotes.Picante * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Picante * 0.7) + margem) // Desconto de 30%
+    ) {
+        return { nome: 'Pacote PICANTE 🌶️', link: 'https://biahoover.github.io/ap02-picante/' };
+    } else if (
+        (valorEmCentavos >= precosPacotes.Master - margem && valorEmCentavos <= precosPacotes.Master + margem) ||
+        (valorEmCentavos >= (precosPacotes.Master / 2) - margem && valorEmCentavos <= (precosPacotes.Master / 2) + margem) ||
+        (valorEmCentavos >= Math.round(precosPacotes.Master * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Master * 0.7) + margem) // Desconto de 30%
+    ) {
+        return { nome: 'Pacote MASTER ⚜️', link: 'https://biahoover.github.io/mk95-master/' };
     } else {
         return null; // Nenhum pacote corresponde ao valor
     }
@@ -1154,9 +1164,9 @@ function obterPacotePorValor(valorPago) {
 // Função para determinar o próximo pacote e o valor do upsell
 function obterUpsell(pacoteAtual) {
     const pacotes = {
-        'Pacote MORANGO 🍓': { nome: 'Pacote PÊSSEGO 🍑', preco: Math.round(precosPacotes['Pessego'] / 2) },
-        'Pacote PÊSSEGO 🍑': { nome: 'Pacote CEREJA 🍒', preco: Math.round(precosPacotes['Cereja'] / 2) },
-        'Pacote CEREJA 🍒': { nome: 'Pacote MORANGO 🍓', preco: Math.round(precosPacotes['Morango'] / 2) },
+        'Pacote CEREJA 🍒': { nome: 'Pacote PICANTE 🌶️', preco: Math.round(precosPacotes['Picante'] / 2) },
+        'Pacote PICANTE 🌶️': { nome: 'Pacote MASTER ⚜️', preco: Math.round(precosPacotes['Master'] / 2) },
+        'Pacote MASTER ⚜️': { nome: 'Pacote CEREJA 🍒', preco: Math.round(precosPacotes['Cereja'] / 2) },
     };
     return pacotes[pacoteAtual] || null;
 }
@@ -1191,7 +1201,7 @@ async function enviarUpsell(ctx, pacoteEntregue) {
 }
 
 // Comando para gerar pagamento via PIX no upsell
-bot.action(/(Pacote CEREJA 🍒|Pacote PÊSSEGO 🍑|Pacote MORANGO 🍓)-(\d+)/, async (ctx) => {
+bot.action(/(Pacote MASTER ⚜️|Pacote PICANTE 🌶️|Pacote CEREJA 🍒)-(\d+)/, async (ctx) => {
     const pacoteEscolhido = ctx.match[1]; // Pacote escolhido a partir do callback_data
     const valor = parseInt(ctx.match[2], 10); // Valor do upsell diretamente do callback_data
 
@@ -1398,9 +1408,9 @@ async function limparMensagens(ctx, tipo) {
         case '1':
 		await deleteMessages([
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
+		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
+		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
 		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
-		// pessegoMessageIds[`${ctx.chat.id}-pessego`], // Esse é o pacote pessego...
-		// morangoMessageIds[`${ctx.chat.id}-morango`], // Esse é o pacote morango...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    // paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1426,9 +1436,9 @@ async function limparMensagens(ctx, tipo) {
 		// Limpar os IDs das mensagens
 	
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
+		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
+		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
 		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
-		// delete pessegoMessageIds[`${ctx.chat.id}-pessego`]; // Esse é o pacote pessego...
-		// delete morangoMessageIds[`${ctx.chat.id}-morango`]; // Esse é o pacote morango...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		// delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1455,9 +1465,9 @@ async function limparMensagens(ctx, tipo) {
         case '2':
 		await deleteMessages([
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
+		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
+		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
 		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
-		// pessegoMessageIds[`${ctx.chat.id}-pessego`], // Esse é o pacote pessego...
-		// morangoMessageIds[`${ctx.chat.id}-morango`], // Esse é o pacote morango...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1483,9 +1493,9 @@ async function limparMensagens(ctx, tipo) {
 		// Limpar os IDs das mensagens
 	
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
+		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
+		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
 		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
-		// delete pessegoMessageIds[`${ctx.chat.id}-pessego`]; // Esse é o pacote pessego...
-		// delete morangoMessageIds[`${ctx.chat.id}-morango`]; // Esse é o pacote morango...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1513,9 +1523,9 @@ async function limparMensagens(ctx, tipo) {
         case '3':
 		await deleteMessages([
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
+		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
+		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
 		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
-		// pessegoMessageIds[`${ctx.chat.id}-pessego`], // Esse é o pacote pessego...
-		// morangoMessageIds[`${ctx.chat.id}-morango`], // Esse é o pacote morango...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1541,9 +1551,9 @@ async function limparMensagens(ctx, tipo) {
 		// Limpar os IDs das mensagens
 	
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
+		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
+		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
 		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
-		// delete pessegoMessageIds[`${ctx.chat.id}-pessego`]; // Esse é o pacote pessego...
-		// delete morangoMessageIds[`${ctx.chat.id}-morango`]; // Esse é o pacote morango...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1569,9 +1579,9 @@ async function limparMensagens(ctx, tipo) {
         case '4':
 		await deleteMessages([
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
+		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
+		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
 		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
-		// pessegoMessageIds[`${ctx.chat.id}-pessego`], // Esse é o pacote pessego...
-		// morangoMessageIds[`${ctx.chat.id}-morango`], // Esse é o pacote morango...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		// generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1597,9 +1607,9 @@ async function limparMensagens(ctx, tipo) {
 		// Limpar os IDs das mensagens
 	
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
+		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
+		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
 		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
-		// delete pessegoMessageIds[`${ctx.chat.id}-pessego`]; // Esse é o pacote pessego...
-		// delete morangoMessageIds[`${ctx.chat.id}-morango`]; // Esse é o pacote morango...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		// delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1625,9 +1635,9 @@ async function limparMensagens(ctx, tipo) {
         case '5':
 		await deleteMessages([
 		mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`], // Oi...
+		masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
+		picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
 		cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
-		pessegoMessageIds[`${ctx.chat.id}-pessego`], // Esse é o pacote pessego...
-		morangoMessageIds[`${ctx.chat.id}-morango`], // Esse é o pacote morango...
 		toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1655,9 +1665,9 @@ async function limparMensagens(ctx, tipo) {
 		// Limpar os IDs das mensagens
 	
 		delete mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`]; // Oii
+		delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
+		delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
 		delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
-		delete pessegoMessageIds[`${ctx.chat.id}-pessego`]; // Esse é o pacote pessego...
-		delete morangoMessageIds[`${ctx.chat.id}-morango`]; // Esse é o pacote morango...
 		delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1694,3 +1704,4 @@ async function limparMensagens(ctx, tipo) {
 obterNomeBot();
 bot.launch();
 console.log('Bot em execução...');
+
