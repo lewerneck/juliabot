@@ -46,16 +46,15 @@ const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyDQcqIAgAqDL
 
 // ID do administrador (substitua pelo ID do seu administrador)
 const adminId = '5308694170';
-
 // Variável para armazenar o nome do bot
 let botName = '';
 let messageKeys = {};
 // Armazenar IDs de mensagens
 	const usersCooldown = new Map();
 	const mensagemInicialMessageIds = {};
+	const masterMessageIds = {};
+	const picanteMessageIds = {};
 	const cerejaMessageIds = {};
-	const pessegoMessageIds = {};
-	const morangoMessageIds = {};
 	const toEsperandoMessageIds = {};
 	const paymentChoiceMessageIds = {};
 	const generatingPaymentMessageIds = {};
@@ -81,9 +80,9 @@ let messageKeys = {};
 
 // Objeto para armazenar os valores dos pacotes
 const precosPacotes = {
-    Morango: 1990,  
-    Pessego: 3700,  
-    Cereja: 5700,   
+    Cereja: 2700,  
+    Picante: 5500,  
+    Master: 7300,   
 };
 
 // Função para obter o nome do bot
@@ -91,6 +90,7 @@ async function obterNomeBot() {
     const me = await bot.telegram.getMe();
     botName = me.first_name; 
 }
+
 
 
 
@@ -597,24 +597,24 @@ async function iniciarFluxoDeConteudo(ctx) {
     const primeiroNome = ctx.from.first_name;
 
     // Enviando mensagem inicial
-    const mensagemInicialMessage = await ctx.reply(`Oiie ${primeiroNome} ❤️`);
+    const mensagemInicialMessage = await ctx.reply(`Oiie ${primeiroNome} ❤️ Você finalmente encontrou meu chat secreto gatinnhooo 😈`);
 	mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`] = mensagemInicialMessage.message_id;
     // MENSAGEM 1 - PACOTE MASTER
-    const videoUrlMaster = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f88086df3c0da15868de58/download.mp4';
-    const captionMaster = `Você finalmente encontrou meu chat secreto xuxuzinhooo 😈`;
+    //const videoUrlMaster = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f88086df3c0da15868de58/download.mp4';
+   // const captionMaster = `Você finalmente encontrou meu chat secreto xuxuzinhooo 😈`;
 
    // const inlineKeyboardMaster = Markup.inlineKeyboard([
   //      [Markup.button.callback('Comprar por R$ 57', 'Master')]
    // ]);
  
     // Delay de 5 segundos antes de enviar MENSAGEM 1
-	setTimeout(async () => {
-    const masterMessage = await ctx.replyWithVideo(videoUrlMaster, { caption: captionMaster, parse_mode: 'MarkdownV2' });
-    masterMessageIds[`${ctx.chat.id}-master`] = masterMessage.message_id; // Mover esta linha para dentro da função assíncrona
-	}, 5000); // 5 segundos
+	//setTimeout(async () => {
+    //const masterMessage = await ctx.replyWithVideo(videoUrlMaster, { caption: captionMaster, parse_mode: 'MarkdownV2' });
+   // masterMessageIds[`${ctx.chat.id}-master`] = masterMessage.message_id; // Mover esta linha para dentro da função assíncrona
+	//}, 5000); // 5 segundos
 
     // MENSAGEM 2 - PACOTE PICANTE
-    const videoUrlPicante = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f8891bb6d587c54ae64f55/download.mp4';
+    const videoUrlPicante = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/6832bd827195d7bad3292169/download.mp4';
     const captionPicante = `Tô esperando por você 💖
 Esses são os meus pacotes  🔞👇🏻`;
 
@@ -1703,4 +1703,3 @@ async function limparMensagens(ctx, tipo) {
 obterNomeBot();
 bot.launch();
 console.log('Bot em execução...');
-
