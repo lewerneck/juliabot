@@ -601,18 +601,18 @@ async function iniciarFluxoDeConteudo(ctx) {
     `Você finalmente encontrou meu chat secreto gatinnhooo 😈`);
 	mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`] = mensagemInicialMessage.message_id;
     // MENSAGEM 1 - PACOTE MASTER
- //   const videoUrlMaster = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f88086df3c0da15868de58/download.mp4';
-   // const captionMaster = `Você finalmente encontrou meu chat secreto xuxuzinhooo 😈`;
+   const videoUrlMaster = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/67f88086df3c0da15868de58/download.mp4';
+   const captionMaster = `Você finalmente encontrou meu chat secreto xuxuzinhooo 😈`;
 
    // const inlineKeyboardMaster = Markup.inlineKeyboard([
   //      [Markup.button.callback('Comprar por R$ 57', 'Master')]
    // ]);
  
     // Delay de 5 segundos antes de enviar MENSAGEM 1
-//	setTimeout(async () => {
-  //  const masterMessage = await ctx.replyWithVideo(videoUrlMaster, { caption: captionMaster, parse_mode: 'MarkdownV2' });
-    // masterMessageIds[`${ctx.chat.id}-master`] = masterMessage.message_id; // Mover esta linha para dentro da função assíncrona
-//	}, 5000); // 5 segundos
+	setTimeout(async () => {
+    const masterMessage = await ctx.replyWithVideo(videoUrlMaster, { caption: captionMaster, parse_mode: 'MarkdownV2' });
+     masterMessageIds[`${ctx.chat.id}-master`] = masterMessage.message_id; // Mover esta linha para dentro da função assíncrona
+	}, 5000); // 5 segundos
 
     // MENSAGEM 2 - PACOTE PICANTE
     const videoUrlPicante = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/6832bd827195d7bad3292169/download.mp4';
