@@ -54,7 +54,7 @@ let messageKeys = {};
 	const mensagemInicialMessageIds = {};
 	const masterMessageIds = {};
 	const picanteMessageIds = {};
-	const cerejaMessageIds = {};
+	const feitiçoMessageIds = {};
 	const toEsperandoMessageIds = {};
 	const paymentChoiceMessageIds = {};
 	const generatingPaymentMessageIds = {};
@@ -80,7 +80,7 @@ let messageKeys = {};
 
 // Objeto para armazenar os valores dos pacotes
 const precosPacotes = {
-    Cereja: 2700,  
+    Feitiço: 2700,  
     Picante: 5500,  
     Master: 7300,   
 };
@@ -624,8 +624,8 @@ Esses são os meus pacotes  🔞👇🏻`;
     const inlineKeyboardPicante = Markup.inlineKeyboard([
         [Markup.button.callback('Pack Picante por R$ 55', 'Picante')]   ]);
 
-       const inlineKeyboardCereja = Markup.inlineKeyboard([
-        [Markup.button.callback('Pack Cereja por R$ 27', 'Cereja')]
+       const inlineKeyboardFeitiço = Markup.inlineKeyboard([
+        [Markup.button.callback('Pack Feitiço por R$ 27', 'Feitiço')]
     ]);
 
     // Delay de 10 segundos antes de enviar MENSAGEM 2 (total de 15 segundos após a primeira)
@@ -637,28 +637,28 @@ Esses são os meus pacotes  🔞👇🏻`;
     inline_keyboard: [
       ...inlineKeyboardMaster.reply_markup.inline_keyboard,
       ...inlineKeyboardPicante.reply_markup.inline_keyboard,
-      ...inlineKeyboardCereja.reply_markup.inline_keyboard,
+      ...inlineKeyboardFeitiço.reply_markup.inline_keyboard,
     ]
   }
 });
     picanteMessageIds[`${ctx.chat.id}-picante`] = picanteMessage.message_id;
 	}, 7000); // 15 segundos (5s + 10s)
 		
-    // MENSAGEM 3 - PACOTE CEREJA
- //   const videoUrlCereja = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
-//    const captionCereja = `***Pacote Cereja 🍒*** \n` + 
+    // MENSAGEM 3 - PACOTE FEITIÇO
+ //   const videoUrlFeitiço = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
+//    const captionFeitiço = `***Pacote Feitiço 🍒*** \n` + 
 	//					   `13 Vídeos e 10 Fotos \n\n` +
 	//					   `Nesse pack você vai encontrar meus melhores videozinhos gozando muito e gemendo gostoso \n\n` +
  //                          `Tem vídeo meladinha, me masturbando, com plugzinho no meu cu, e dos melhores jeitos pra você\\!`;
 
-  //  const inlineKeyboardCereja = Markup.inlineKeyboard([
-   //     [Markup.button.callback('Comprar por R$ 19,90', 'Cereja')]
+  //  const inlineKeyboardFeitiço = Markup.inlineKeyboard([
+   //     [Markup.button.callback('Comprar por R$ 19,90', 'Feitiço')]
    // ]);
 
     // Delay de 15 segundos antes de enviar MENSAGEM 3 (total de 30 segundos após a primeira)
    // setTimeout(async () => {
- //       const cerejaMessage = await ctx.replyWithVideo(videoUrlCereja, { caption: captionCereja, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardCereja.reply_markup });
-  //  cerejaMessageIds[`${ctx.chat.id}-cereja`] = cerejaMessage.message_id;
+ //       const feitiçoMessage = await ctx.replyWithVideo(videoUrlFeitiço, { caption: captionFeitiço, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardFeitiço.reply_markup });
+  //  feitiçoMessageIds[`${ctx.chat.id}-feitiço`] = feitiçoMessage.message_id;
 //	}, 9000); // 30 segundos (5s + 10s + 15s)
 	
 	
@@ -672,7 +672,7 @@ Esses são os meus pacotes  🔞👇🏻`;
 }
 
 // Comando para escolher forma de pagamento AQUI TA OK **************************************************
-bot.action(/^(Master|Picante|Cereja)$/, async (ctx) => {
+bot.action(/^(Master|Picante|Feitiço)$/, async (ctx) => {
 	// Chama diretamente a função limparMensagens
 	await limparMensagens(ctx, '2');
    
@@ -694,7 +694,7 @@ bot.action(/^(Master|Picante|Cereja)$/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via Cartão de Crédito
-bot.action(/(Master|Picante|Cereja)-cartao/, async (ctx) => {
+bot.action(/(Master|Picante|Feitiço)-cartao/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
      // Envia a mensagem "Gerando Pagamento..." e armazena o ID da mensagem
     const generatingMessage = await ctx.reply(
@@ -716,7 +716,7 @@ bot.action(/(Master|Picante|Cereja)-cartao/, async (ctx) => {
         case 'Picante':
             checkoutLink = 'https://pay.cakto.com.br/6j8hePu';
             break;
-        case 'Cereja':
+        case 'Feitiço':
             checkoutLink = 'https://pay.cakto.com.br/5BxgnJ8';
             break;
     }
@@ -734,7 +734,7 @@ bot.action(/(Master|Picante|Cereja)-cartao/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via PIX
-bot.action(/(Master|Picante|Cereja)-pix/, async (ctx) => {
+bot.action(/(Master|Picante|Feitiço)-pix/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
     const valor = precosPacotes[pacoteEscolhido];
     await gerarPagamento(ctx, valor, pacoteEscolhido);
@@ -1121,7 +1121,7 @@ bot.action(/gerarPagamentoComDesconto:(.+)-(\d+)/, async (ctx) => {
 // Função para obter a descrição do pacote com base na chave
 function obterDescricaoPacote(pacote) {
     const descricoes = {
-        Cereja: 'CEREJA',
+        Feitiço: 'FEITIÇO',
         Picante: 'PICANTE',
         Master: 'MASTER'
     };
@@ -1138,11 +1138,11 @@ function obterPacotePorValor(valorPago) {
 
     // Verificando qual pacote corresponde ao valor pago
     if (
-        (valorEmCentavos >= precosPacotes.Cereja - margem && valorEmCentavos <= precosPacotes.Cereja + margem) ||
-        (valorEmCentavos >= (precosPacotes.Cereja / 2) - margem && valorEmCentavos <= (precosPacotes.Cereja / 2) + margem) ||
-        (valorEmCentavos >= Math.round(precosPacotes.Cereja * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Cereja * 0.7) + margem) // Desconto de 30%
+        (valorEmCentavos >= precosPacotes.Feitiço - margem && valorEmCentavos <= precosPacotes.Feitiço + margem) ||
+        (valorEmCentavos >= (precosPacotes.Feitiço / 2) - margem && valorEmCentavos <= (precosPacotes.Feitiço / 2) + margem) ||
+        (valorEmCentavos >= Math.round(precosPacotes.Feitiço * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Feitiço * 0.7) + margem) // Desconto de 30%
     ) {
-        return { nome: 'Pacote CEREJA 🍒', link: 'https://biahoover.github.io/xr26-cereja/' };
+        return { nome: 'Pacote FEITIÇO 🍒', link: 'https://biahoover.github.io/xr26-feitiço/' };
     } else if (
         (valorEmCentavos >= precosPacotes.Picante - margem && valorEmCentavos <= precosPacotes.Picante + margem) ||
         (valorEmCentavos >= (precosPacotes.Picante / 2) - margem && valorEmCentavos <= (precosPacotes.Picante / 2) + margem) ||
@@ -1163,9 +1163,9 @@ function obterPacotePorValor(valorPago) {
 // Função para determinar o próximo pacote e o valor do upsell
 function obterUpsell(pacoteAtual) {
     const pacotes = {
-        'Pacote CEREJA 🍒': { nome: 'Pacote PICANTE 🌶️', preco: Math.round(precosPacotes['Picante'] / 2) },
+        'Pacote FEITIÇO 🍒': { nome: 'Pacote PICANTE 🌶️', preco: Math.round(precosPacotes['Picante'] / 2) },
         'Pacote PICANTE 🌶️': { nome: 'Pacote MASTER ⚜️', preco: Math.round(precosPacotes['Master'] / 2) },
-        'Pacote MASTER ⚜️': { nome: 'Pacote CEREJA 🍒', preco: Math.round(precosPacotes['Cereja'] / 2) },
+        'Pacote MASTER ⚜️': { nome: 'Pacote FEITIÇO 🍒', preco: Math.round(precosPacotes['Feitiço'] / 2) },
     };
     return pacotes[pacoteAtual] || null;
 }
@@ -1200,7 +1200,7 @@ async function enviarUpsell(ctx, pacoteEntregue) {
 }
 
 // Comando para gerar pagamento via PIX no upsell
-bot.action(/(Pacote MASTER ⚜️|Pacote PICANTE 🌶️|Pacote CEREJA 🍒)-(\d+)/, async (ctx) => {
+bot.action(/(Pacote MASTER ⚜️|Pacote PICANTE 🌶️|Pacote FEITIÇO 🍒)-(\d+)/, async (ctx) => {
     const pacoteEscolhido = ctx.match[1]; // Pacote escolhido a partir do callback_data
     const valor = parseInt(ctx.match[2], 10); // Valor do upsell diretamente do callback_data
 
@@ -1409,7 +1409,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
 		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
-		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
+		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    // paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1437,7 +1437,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
 		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
-		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
+		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		// delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1466,7 +1466,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
 		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
-		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
+		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1494,7 +1494,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
 		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
-		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
+		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1524,7 +1524,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
 		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
-		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
+		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1552,7 +1552,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
 		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
-		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
+		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1580,7 +1580,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
 		// picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
-		// cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
+		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		// generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1608,7 +1608,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
 		// delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
-		// delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
+		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		// delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1636,7 +1636,7 @@ async function limparMensagens(ctx, tipo) {
 		mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`], // Oi...
 		masterMessageIds[`${ctx.chat.id}-master`], // Esse é o pacote master...
 		picanteMessageIds[`${ctx.chat.id}-picante`], // Esse é o pacote picante...
-		cerejaMessageIds[`${ctx.chat.id}-cereja`], // Esse é o pacote cereja...
+		feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
 		toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1666,7 +1666,7 @@ async function limparMensagens(ctx, tipo) {
 		delete mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`]; // Oii
 		delete masterMessageIds[`${ctx.chat.id}-master`]; // Esse é o pacote master...
 		delete picanteMessageIds[`${ctx.chat.id}-picante`]; // Esse é o pacote picante...
-		delete cerejaMessageIds[`${ctx.chat.id}-cereja`]; // Esse é o pacote cereja...
+		delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
 		delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
