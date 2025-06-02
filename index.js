@@ -608,11 +608,18 @@ async function iniciarFluxoDeConteudo(ctx) {
   //      [Markup.button.callback('Comprar por R$ 57', 'Luxuria')]
    // ]);
  
-    // Delay de 5 segundos antes de enviar MENSAGEM 1
-	setTimeout(async () => {
-    const luxuriaMessage = await ctx.replyWithVideo(videoUrlLuxuria, { caption: captionLuxuria, parse_mode: 'MarkdownV2' });
-   luxuriaMessageIds[`${ctx.chat.id}-luxuria`] = luxuriaMessage.message_id; // Mover esta linha para dentro da função assíncrona
-	// Define o timeout para apagar a mensagem após 2 minutos (120000 ms)
+  // Delay de 5 segundos antes de enviar MENSAGEM 1
+setTimeout(async () => {
+  try {
+    const luxuriaMessage = await ctx.replyWithVideo(videoUrlLuxuria, {
+      caption: captionLuxuria,
+      parse_mode: 'MarkdownV2',
+    });
+
+    // Armazena o ID da mensagem
+    luxuriaMessageIds[`${ctx.chat.id}-luxuria`] = luxuriaMessage.message_id;
+
+    // Delay de 2 minutos para apagar a mensagem
     setTimeout(async () => {
       try {
         await ctx.deleteMessage(luxuriaMessage.message_id);
@@ -620,10 +627,12 @@ async function iniciarFluxoDeConteudo(ctx) {
         console.error('Erro ao deletar a mensagem:', err);
       }
     }, 120000); // 2 minutos
+
   } catch (err) {
     console.error('Erro ao enviar vídeo:', err);
   }
 }, 5000); // 5 segundos
+
 
     // MENSAGEM 2 - PACOTE FANTASIA
     const videoUrlFantasia = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/683d1138c2302966c82874dc/download.mp4';
