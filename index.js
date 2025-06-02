@@ -626,7 +626,7 @@ setTimeout(async () => {
       } catch (err) {
         console.error('Erro ao deletar a mensagem:', err);
       }
-    }, 120000); // 2 minutos
+    }, 40000); // 2 minutos
 
   } catch (err) {
     console.error('Erro ao enviar vídeo:', err);
@@ -639,16 +639,16 @@ setTimeout(async () => {
     const captionFantasia = `Tô esperando por você 💖
 Esses são os meus pacotes  🔞👇🏻`;
 const inlineKeyboardFeitiço = Markup.inlineKeyboard([
-        [Markup.button.callback('VIP 1 MÊS por R$ 29,90', 'Feitiço')] ]);
+        [Markup.button.callback('VIP 1 MÊS • R$ 29,90', 'Feitiço')] ]);
 	
 	const inlineKeyboardFantasia = Markup.inlineKeyboard([
-        [Markup.button.callback('Pack Fantasia por R$ 49,90', 'Fantasia')]   ]);
+        [Markup.button.callback('Pack Fantasia • R$ 49,90', 'Fantasia')]   ]);
 	
     const inlineKeyboardLuxuria = Markup.inlineKeyboard([
-       [Markup.button.callback('Pack Luxuria R$ 69,90', 'Luxuria')]   ]);
+       [Markup.button.callback('Pack Luxuria • R$ 69,90', 'Luxuria')]   ]);
   
     const inlineKeyboardPezinho = Markup.inlineKeyboard([
-       [Markup.button.callback('Pack do Pé R$ 147', 'Pezinho')]
+       [Markup.button.callback('Pack do Pé • R$ 147', 'Pezinho')]
 
        
 
@@ -662,15 +662,15 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
   parse_mode: 'MarkdownV2',
   reply_markup: {
     inline_keyboard: [
-      ...inlineKeyboardLuxuria.reply_markup.inline_keyboard,
-      ...inlineKeyboardFantasia.reply_markup.inline_keyboard,
-      ...inlineKeyboardFeitiço.reply_markup.inline_keyboard,
-	...inlineKeyboardPezinho.reply_markup.inline_keyboard,
+	    ...inlineKeyboardFeitiço.reply_markup.inline_keyboard,
+	    ...inlineKeyboardFantasia.reply_markup.inline_keyboard,
+            ...inlineKeyboardLuxuria.reply_markup.inline_keyboard,
+            ...inlineKeyboardPezinho.reply_markup.inline_keyboard,
     ]
   }
 });
     fantasiaMessageIds[`${ctx.chat.id}-fantasia`] = fantasiaMessage.message_id;
-	}, 125000); // 15 segundos (5s + 10s)
+	}, 45000); // 15 segundos (5s + 10s)
 		
     // MENSAGEM 3 - PACOTE FEITIÇO
  //   const videoUrlFeitiço = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
@@ -694,7 +694,7 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
     setTimeout(async () => {
         const toEsperandoMessage = await ctx.reply("To te esperando...");
     toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`] = toEsperandoMessage.message_id;
-   }, 10000); // 35 segundos (5s + 10s + 15s + 5s)
+   }, 50000); // 35 segundos (5s + 10s + 15s + 5s)
    
 	setTimeout(() => consultarUsuario(ctx), 12 * 60 * 60 * 1000); // 12 horas em milissegundos
 }
