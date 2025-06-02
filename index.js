@@ -619,13 +619,13 @@ async function iniciarFluxoDeConteudo(ctx) {
 Esses são os meus pacotes  🔞👇🏻`;
 
     const inlineKeyboardLuxuria = Markup.inlineKeyboard([
-       [Markup.button.callback('Pack Luxuria R$ 78', 'Luxuria')]   ]);
+       [Markup.button.callback('Pack Luxuria por R$ 78', 'Luxuria')]   ]);
   
     const inlineKeyboardFantasia = Markup.inlineKeyboard([
         [Markup.button.callback('Pack Fantasia por R$ 55', 'Fantasia')]   ]);
 
        const inlineKeyboard1Mes = Markup.inlineKeyboard([
-        [Markup.button.callback('Pack 1Mes por R$ 29,90', '1Mes')]
+        [Markup.button.callback('VIP 1 Mês por R$ 29,90', '1Mes')]
     ]);
 
     // Delay de 10 segundos antes de enviar MENSAGEM 2 (total de 15 segundos após a primeira)
