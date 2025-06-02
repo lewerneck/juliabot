@@ -648,7 +648,7 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
        [Markup.button.callback('Pack Luxuria • R$ 69,90', 'Luxuria')]   ]);
   
     const inlineKeyboardPezinho = Markup.inlineKeyboard([
-       [Markup.button.callback('Pack do Pé • R$ 147', 'Pezinho')]
+       [Markup.button.callback('Pack do Pé • R$ 147,00', 'Pezinho')]
 
        
 
