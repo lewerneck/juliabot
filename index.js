@@ -639,7 +639,7 @@ setTimeout(async () => {
     const captionFantasia = `Tô esperando por você 💖
 Esses são os meus pacotes  🔞👇🏻`;
 const inlineKeyboardFeitiço = Markup.inlineKeyboard([
-        [Markup.button.callback('VIP 1 MÊS por R$ 29,90', 'Feitiço')];
+        [Markup.button.callback('VIP 1 MÊS por R$ 29,90', 'Feitiço')] ]);
 	
 	const inlineKeyboardFantasia = Markup.inlineKeyboard([
         [Markup.button.callback('Pack Fantasia por R$ 49,90', 'Fantasia')]   ]);
@@ -648,7 +648,7 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
        [Markup.button.callback('Pack Luxuria R$ 69,90', 'Luxuria')]   ]);
   
     const inlineKeyboardPezinho = Markup.inlineKeyboard([
-       [Markup.button.callback('Pack do Pé R$ 147', 'Pezinho')]   ])
+       [Markup.button.callback('Pack do Pé R$ 147', 'Pezinho')]
 
        
 
