@@ -674,7 +674,7 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
 		
     // MENSAGEM 3 - PACOTE FEITIÇO
  //   const videoUrlFeitiço = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
-//    const captionFeitiço = `***Pacote Feitiço ✨*** \n` + 
+//    const captionFeitiço = `***VIP 1 MÊS*** \n` + 
 	//					   `13 Vídeos e 10 Fotos \n\n` +
 	//					   `Nesse pack você vai encontrar meus melhores videozinhos gozando muito e gemendo gostoso \n\n` +
  //                          `Tem vídeo meladinha, me masturbando, com plugzinho no meu cu, e dos melhores jeitos pra você\\!`;
@@ -1174,7 +1174,7 @@ function obterPacotePorValor(valorPago) {
         (valorEmCentavos >= (precosPacotes.Feitiço / 2) - margem && valorEmCentavos <= (precosPacotes.Feitiço / 2) + margem) ||
         (valorEmCentavos >= Math.round(precosPacotes.Feitiço * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Feitiço * 0.7) + margem) // Desconto de 30%
     ) {
-        return { nome: 'Pacote FEITIÇO ✨', link: 'https://photos.app.goo.gl/CRnAp21g1iZYK4WT7' };
+        return { nome: 'VIP 1 MÊS', link: 'https://photos.app.goo.gl/CRnAp21g1iZYK4WT7' };
     } else if (
         (valorEmCentavos >= precosPacotes.Fantasia - margem && valorEmCentavos <= precosPacotes.Fantasia + margem) ||
         (valorEmCentavos >= (precosPacotes.Fantasia / 2) - margem && valorEmCentavos <= (precosPacotes.Fantasia / 2) + margem) ||
@@ -1186,7 +1186,13 @@ function obterPacotePorValor(valorPago) {
         (valorEmCentavos >= (precosPacotes.Luxuria / 2) - margem && valorEmCentavos <= (precosPacotes.Luxuria / 2) + margem) ||
         (valorEmCentavos >= Math.round(precosPacotes.Luxuria * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Luxuria * 0.7) + margem) // Desconto de 30%
     ) {
-        return { nome: 'Pacote LUXURIA 🔥', link: 'https://photos.app.goo.gl/bFHBMtBDqnLQnCMg6' };
+        return { nome: 'Pacote LUXURIA 👑', link: 'https://photos.app.goo.gl/bFHBMtBDqnLQnCMg6' };
+   } else if (
+        (valorEmCentavos >= precosPacotes.Pezinho - margem && valorEmCentavos <= precosPacotes.Pezinho + margem) ||
+        (valorEmCentavos >= (precosPacotes.Pezinho / 2) - margem && valorEmCentavos <= (precosPacotes.Pezinho / 2) + margem) ||
+        (valorEmCentavos >= Math.round(precosPacotes.Pezinho * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Pezinho * 0.7) + margem) // Desconto de 30%
+    ) {
+        return { nome: 'Pack do Pézinho 👣', link: 'https://photos.app.goo.gl/pe2cKjY8AXins4Ux8' };
     } else {
         return null; // Nenhum pacote corresponde ao valor
     }
@@ -1195,9 +1201,9 @@ function obterPacotePorValor(valorPago) {
 // Função para determinar o próximo pacote e o valor do upsell
 function obterUpsell(pacoteAtual) {
     const pacotes = {
-        'Pacote FEITIÇO ✨': { nome: 'Pacote FANTASIA 💋', preco: Math.round(precosPacotes['Fantasia'] / 2) },
-        'Pacote FANTASIA 💋': { nome: 'Pacote LUXURIA 🔥', preco: Math.round(precosPacotes['Luxuria'] / 2) },
-        'Pacote LUXURIA 🔥': { nome: 'Pacote FEITIÇO ✨', preco: Math.round(precosPacotes['Feitiço'] / 2) },
+        'VIP 1 MÊS': { nome: 'Pacote FANTASIA 💋', preco: Math.round(precosPacotes['Fantasia'] / 2) },
+        'Pacote FANTASIA 💋': { nome: 'Pacote LUXURIA 👑', preco: Math.round(precosPacotes['Luxuria'] / 2) },
+        'Pacote LUXURIA 👑': { nome: 'Pack do Pézinho 👣', preco: Math.round(precosPacotes['Pezinho'] / 2) },
     };
     return pacotes[pacoteAtual] || null;
 }
@@ -1232,7 +1238,7 @@ async function enviarUpsell(ctx, pacoteEntregue) {
 }
 
 // Comando para gerar pagamento via PIX no upsell
-bot.action(/(Pacote LUXURIA 🔥|Pacote FANTASIA 💋|Pacote FEITIÇO ✨)-(\d+)/, async (ctx) => {
+bot.action(/(Pack do Pézinho 👣|Pacote LUXURIA 👑|Pacote FANTASIA 💋|VIP 1 MÊS)-(\d+)/, async (ctx) => {
     const pacoteEscolhido = ctx.match[1]; // Pacote escolhido a partir do callback_data
     const valor = parseInt(ctx.match[2], 10); // Valor do upsell diretamente do callback_data
 
