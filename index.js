@@ -54,7 +54,7 @@ let messageKeys = {};
 	const mensagemInicialMessageIds = {};
 	const luxuriaMessageIds = {};
 	const fantasiaMessageIds = {};
-	const feitiçoMessageIds = {};
+	const 1mesMessageIds = {};
 	const toEsperandoMessageIds = {};
 	const paymentChoiceMessageIds = {};
 	const generatingPaymentMessageIds = {};
@@ -80,7 +80,7 @@ let messageKeys = {};
 
 // Objeto para armazenar os valores dos pacotes
 const precosPacotes = {
-    Feitiço: 2990,  
+    1Mes: 2990,  
     Fantasia: 5500,  
     Luxuria: 7800,   
 };
@@ -624,8 +624,8 @@ Esses são os meus pacotes  🔞👇🏻`;
     const inlineKeyboardFantasia = Markup.inlineKeyboard([
         [Markup.button.callback('Pack Fantasia por R$ 55', 'Fantasia')]   ]);
 
-       const inlineKeyboardFeitiço = Markup.inlineKeyboard([
-        [Markup.button.callback('Pack Feitiço por R$ 29,90', 'Feitiço')]
+       const inlineKeyboard1Mes = Markup.inlineKeyboard([
+        [Markup.button.callback('Pack 1Mes por R$ 29,90', '1Mes')]
     ]);
 
     // Delay de 10 segundos antes de enviar MENSAGEM 2 (total de 15 segundos após a primeira)
@@ -637,28 +637,28 @@ Esses são os meus pacotes  🔞👇🏻`;
     inline_keyboard: [
       ...inlineKeyboardLuxuria.reply_markup.inline_keyboard,
       ...inlineKeyboardFantasia.reply_markup.inline_keyboard,
-      ...inlineKeyboardFeitiço.reply_markup.inline_keyboard,
+      ...inlineKeyboard1Mes.reply_markup.inline_keyboard,
     ]
   }
 });
     fantasiaMessageIds[`${ctx.chat.id}-fantasia`] = fantasiaMessage.message_id;
 	}, 7000); // 15 segundos (5s + 10s)
 		
-    // MENSAGEM 3 - PACOTE FEITIÇO
- //   const videoUrlFeitiço = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
-//    const captionFeitiço = `***Pacote Feitiço ✨*** \n` + 
+    // MENSAGEM 3 - PACOTE 1MES
+ //   const videoUrl1Mes = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
+//    const caption1Mes = `***Pacote 1Mes ✨*** \n` + 
 	//					   `13 Vídeos e 10 Fotos \n\n` +
 	//					   `Nesse pack você vai encontrar meus melhores videozinhos gozando muito e gemendo gostoso \n\n` +
  //                          `Tem vídeo meladinha, me masturbando, com plugzinho no meu cu, e dos melhores jeitos pra você\\!`;
 
-  //  const inlineKeyboardFeitiço = Markup.inlineKeyboard([
-   //     [Markup.button.callback('Comprar por R$ 19,90', 'Feitiço')]
+  //  const inlineKeyboard1Mes = Markup.inlineKeyboard([
+   //     [Markup.button.callback('Comprar por R$ 19,90', '1Mes')]
    // ]);
 
     // Delay de 15 segundos antes de enviar MENSAGEM 3 (total de 30 segundos após a primeira)
    // setTimeout(async () => {
- //       const feitiçoMessage = await ctx.replyWithVideo(videoUrlFeitiço, { caption: captionFeitiço, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboardFeitiço.reply_markup });
-  //  feitiçoMessageIds[`${ctx.chat.id}-feitiço`] = feitiçoMessage.message_id;
+ //       const 1mesMessage = await ctx.replyWithVideo(videoUrl1Mes, { caption: caption1Mes, parse_mode: 'MarkdownV2', reply_markup: inlineKeyboard1Mes.reply_markup });
+  //  1mesMessageIds[`${ctx.chat.id}-1mes`] = 1mesMessage.message_id;
 //	}, 9000); // 30 segundos (5s + 10s + 15s)
 	
 	
@@ -672,7 +672,7 @@ Esses são os meus pacotes  🔞👇🏻`;
 }
 
 // Comando para escolher forma de pagamento AQUI TA OK **************************************************
-bot.action(/^(Luxuria|Fantasia|Feitiço)$/, async (ctx) => {
+bot.action(/^(Luxuria|Fantasia|1Mes)$/, async (ctx) => {
 	// Chama diretamente a função limparMensagens
 	await limparMensagens(ctx, '2');
    
@@ -694,7 +694,7 @@ bot.action(/^(Luxuria|Fantasia|Feitiço)$/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via Cartão de Crédito
-bot.action(/(Luxuria|Fantasia|Feitiço)-cartao/, async (ctx) => {
+bot.action(/(Luxuria|Fantasia|1Mes)-cartao/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
      // Envia a mensagem "Gerando Pagamento..." e armazena o ID da mensagem
     const generatingMessage = await ctx.reply(
@@ -716,7 +716,7 @@ bot.action(/(Luxuria|Fantasia|Feitiço)-cartao/, async (ctx) => {
         case 'Fantasia':
             checkoutLink = 'https://pay.cakto.com.br/6j8hePu';
             break;
-        case 'Feitiço':
+        case '1Mes':
             checkoutLink = 'https://pay.cakto.com.br/5BxgnJ8';
             break;
     }
@@ -734,7 +734,7 @@ bot.action(/(Luxuria|Fantasia|Feitiço)-cartao/, async (ctx) => {
 });
 
 // Comando para gerar pagamento via PIX
-bot.action(/(Luxuria|Fantasia|Feitiço)-pix/, async (ctx) => {
+bot.action(/(Luxuria|Fantasia|1Mes)-pix/, async (ctx) => {
     const pacoteEscolhido = ctx.match[0].split('-')[0];
     const valor = precosPacotes[pacoteEscolhido];
     await gerarPagamento(ctx, valor, pacoteEscolhido);
@@ -1121,7 +1121,7 @@ bot.action(/gerarPagamentoComDesconto:(.+)-(\d+)/, async (ctx) => {
 // Função para obter a descrição do pacote com base na chave
 function obterDescricaoPacote(pacote) {
     const descricoes = {
-        Feitiço: 'FEITIÇO',
+        1Mes: '1MES',
         Fantasia: 'FANTASIA',
         Luxuria: 'LUXURIA'
     };
@@ -1138,11 +1138,11 @@ function obterPacotePorValor(valorPago) {
 
     // Verificando qual pacote corresponde ao valor pago
     if (
-        (valorEmCentavos >= precosPacotes.Feitiço - margem && valorEmCentavos <= precosPacotes.Feitiço + margem) ||
-        (valorEmCentavos >= (precosPacotes.Feitiço / 2) - margem && valorEmCentavos <= (precosPacotes.Feitiço / 2) + margem) ||
-        (valorEmCentavos >= Math.round(precosPacotes.Feitiço * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.Feitiço * 0.7) + margem) // Desconto de 30%
+        (valorEmCentavos >= precosPacotes.1Mes - margem && valorEmCentavos <= precosPacotes.1Mes + margem) ||
+        (valorEmCentavos >= (precosPacotes.1Mes / 2) - margem && valorEmCentavos <= (precosPacotes.1Mes / 2) + margem) ||
+        (valorEmCentavos >= Math.round(precosPacotes.1Mes * 0.7) - margem && valorEmCentavos <= Math.round(precosPacotes.1Mes * 0.7) + margem) // Desconto de 30%
     ) {
-        return { nome: 'Pacote FEITIÇO ✨', link: 'https://photos.app.goo.gl/CRnAp21g1iZYK4WT7' };
+        return { nome: 'Pacote 1MES ✨', link: 'https://photos.app.goo.gl/CRnAp21g1iZYK4WT7' };
     } else if (
         (valorEmCentavos >= precosPacotes.Fantasia - margem && valorEmCentavos <= precosPacotes.Fantasia + margem) ||
         (valorEmCentavos >= (precosPacotes.Fantasia / 2) - margem && valorEmCentavos <= (precosPacotes.Fantasia / 2) + margem) ||
@@ -1163,9 +1163,9 @@ function obterPacotePorValor(valorPago) {
 // Função para determinar o próximo pacote e o valor do upsell
 function obterUpsell(pacoteAtual) {
     const pacotes = {
-        'Pacote FEITIÇO ✨': { nome: 'Pacote FANTASIA 💋', preco: Math.round(precosPacotes['Fantasia'] / 2) },
+        'Pacote 1MES ✨': { nome: 'Pacote FANTASIA 💋', preco: Math.round(precosPacotes['Fantasia'] / 2) },
         'Pacote FANTASIA 💋': { nome: 'Pacote LUXURIA 🔥', preco: Math.round(precosPacotes['Luxuria'] / 2) },
-        'Pacote LUXURIA 🔥': { nome: 'Pacote FEITIÇO ✨', preco: Math.round(precosPacotes['Feitiço'] / 2) },
+        'Pacote LUXURIA 🔥': { nome: 'Pacote 1MES ✨', preco: Math.round(precosPacotes['1Mes'] / 2) },
     };
     return pacotes[pacoteAtual] || null;
 }
@@ -1200,7 +1200,7 @@ async function enviarUpsell(ctx, pacoteEntregue) {
 }
 
 // Comando para gerar pagamento via PIX no upsell
-bot.action(/(Pacote LUXURIA 🔥|Pacote FANTASIA 💋|Pacote FEITIÇO ✨)-(\d+)/, async (ctx) => {
+bot.action(/(Pacote LUXURIA 🔥|Pacote FANTASIA 💋|Pacote 1MES ✨)-(\d+)/, async (ctx) => {
     const pacoteEscolhido = ctx.match[1]; // Pacote escolhido a partir do callback_data
     const valor = parseInt(ctx.match[2], 10); // Valor do upsell diretamente do callback_data
 
@@ -1409,7 +1409,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// luxuriaMessageIds[`${ctx.chat.id}-luxuria`], // Esse é o pacote luxuria...
 		// fantasiaMessageIds[`${ctx.chat.id}-fantasia`], // Esse é o pacote fantasia...
-		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
+		// 1mesMessageIds[`${ctx.chat.id}-1mes`], // Esse é o pacote 1mes...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    // paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1437,7 +1437,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete luxuriaMessageIds[`${ctx.chat.id}-luxuria`]; // Esse é o pacote luxuria...
 		// delete fantasiaMessageIds[`${ctx.chat.id}-fantasia`]; // Esse é o pacote fantasia...
-		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
+		// delete 1mesMessageIds[`${ctx.chat.id}-1mes`]; // Esse é o pacote 1mes...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		// delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1466,7 +1466,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// luxuriaMessageIds[`${ctx.chat.id}-luxuria`], // Esse é o pacote luxuria...
 		// fantasiaMessageIds[`${ctx.chat.id}-fantasia`], // Esse é o pacote fantasia...
-		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
+		// 1mesMessageIds[`${ctx.chat.id}-1mes`], // Esse é o pacote 1mes...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1494,7 +1494,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete luxuriaMessageIds[`${ctx.chat.id}-luxuria`]; // Esse é o pacote luxuria...
 		// delete fantasiaMessageIds[`${ctx.chat.id}-fantasia`]; // Esse é o pacote fantasia...
-		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
+		// delete 1mesMessageIds[`${ctx.chat.id}-1mes`]; // Esse é o pacote 1mes...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1524,7 +1524,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// luxuriaMessageIds[`${ctx.chat.id}-luxuria`], // Esse é o pacote luxuria...
 		// fantasiaMessageIds[`${ctx.chat.id}-fantasia`], // Esse é o pacote fantasia...
-		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
+		// 1mesMessageIds[`${ctx.chat.id}-1mes`], // Esse é o pacote 1mes...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1552,7 +1552,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete luxuriaMessageIds[`${ctx.chat.id}-luxuria`]; // Esse é o pacote luxuria...
 		// delete fantasiaMessageIds[`${ctx.chat.id}-fantasia`]; // Esse é o pacote fantasia...
-		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
+		// delete 1mesMessageIds[`${ctx.chat.id}-1mes`]; // Esse é o pacote 1mes...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1580,7 +1580,7 @@ async function limparMensagens(ctx, tipo) {
 		// mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`], // Oi...
 		// luxuriaMessageIds[`${ctx.chat.id}-luxuria`], // Esse é o pacote luxuria...
 		// fantasiaMessageIds[`${ctx.chat.id}-fantasia`], // Esse é o pacote fantasia...
-		// feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
+		// 1mesMessageIds[`${ctx.chat.id}-1mes`], // Esse é o pacote 1mes...
 		// toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		// generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1608,7 +1608,7 @@ async function limparMensagens(ctx, tipo) {
 		// delete mensagemInicialMessageIds[`${ctx.chat.id}-MensagemInicial`]; // Oii
 		// delete luxuriaMessageIds[`${ctx.chat.id}-luxuria`]; // Esse é o pacote luxuria...
 		// delete fantasiaMessageIds[`${ctx.chat.id}-fantasia`]; // Esse é o pacote fantasia...
-		// delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
+		// delete 1mesMessageIds[`${ctx.chat.id}-1mes`]; // Esse é o pacote 1mes...
 		// delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		// delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1636,7 +1636,7 @@ async function limparMensagens(ctx, tipo) {
 		mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`], // Oi...
 		luxuriaMessageIds[`${ctx.chat.id}-luxuria`], // Esse é o pacote luxuria...
 		fantasiaMessageIds[`${ctx.chat.id}-fantasia`], // Esse é o pacote fantasia...
-		feitiçoMessageIds[`${ctx.chat.id}-feitiço`], // Esse é o pacote feitiço...
+		1mesMessageIds[`${ctx.chat.id}-1mes`], // Esse é o pacote 1mes...
 		toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To esperando...
 	    paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`], // Escolha a forma de pagamento
 		generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
@@ -1666,7 +1666,7 @@ async function limparMensagens(ctx, tipo) {
 		delete mensagemInicialMessageIds[`${ctx.chat.id}-mensagemInicial`]; // Oii
 		delete luxuriaMessageIds[`${ctx.chat.id}-luxuria`]; // Esse é o pacote luxuria...
 		delete fantasiaMessageIds[`${ctx.chat.id}-fantasia`]; // Esse é o pacote fantasia...
-		delete feitiçoMessageIds[`${ctx.chat.id}-feitiço`]; // Esse é o pacote feitiço...
+		delete 1mesMessageIds[`${ctx.chat.id}-1mes`]; // Esse é o pacote 1mes...
 		delete toEsperandoMessageIds[`${ctx.chat.id}-toEsperando`], // To te esperando...
 		delete paymentChoiceMessageIds[`${ctx.chat.id}-paymentChoice`]; // Escolha a forma de pagamento
 		delete generatingPaymentMessageIds[`${ctx.chat.id}-generatingPayment`], // Gerando pagamento com Pix...
