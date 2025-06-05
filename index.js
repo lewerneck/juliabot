@@ -80,7 +80,7 @@ let messageKeys = {};
 
 // Objeto para armazenar os valores dos pacotes
 const precosPacotes = {
-    Feitiço: 3700,  
+    Feitiço: 2990,  
     Fantasia: 4990,  
     Luxuria: 6990,
     Pezinho: 14700,
