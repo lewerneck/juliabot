@@ -626,7 +626,7 @@ setTimeout(async () => {
       } catch (err) {
         console.error('Erro ao deletar a mensagem:', err);
       }
-    }, 40000); // 2 minutos
+    }, 60000); // 60 segundos
 
   } catch (err) {
     console.error('Erro ao enviar vídeo:', err);
@@ -670,7 +670,7 @@ const inlineKeyboardFeitiço = Markup.inlineKeyboard([
   }
 });
     fantasiaMessageIds[`${ctx.chat.id}-fantasia`] = fantasiaMessage.message_id;
-	}, 45000); // 15 segundos (5s + 10s)
+	}, 40000); // 15 segundos (5s + 10s)
 		
     // MENSAGEM 3 - PACOTE FEITIÇO
  //   const videoUrlFeitiço = 'https://video.gumlet.io/66180b4d8ec2efeb9164568c/671bc33038a902e47566e3d3/download.mp4';
